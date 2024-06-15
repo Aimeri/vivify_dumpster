@@ -5,11 +5,12 @@
 Dumpster Diving for materials/items of your choice.  Dumpster storage that persists through storm as well.<br /><br />
 
 <strong>INSTALL</strong>
-- Simply extract the "vivify_dumpster" folder into your "standalone" folder. and start the resource (refresh, start vivify_dumpsters) or restart your server.
+- Simply extract the "vivify_dumpster" folder into your "standalone" folder.
 - Configure the items you want available during dumpster diving/searching under Config.Loot in the config.lua
 - Config.Cooldown is the amount of time a Player must wait after a dumpster is already searched.
 - Config.ItemCount is number of items you will loot, at random, out of the Config.Loot table.
 - Config.ItemQuantity is the amount of each of the items you may get at random (ie: You may get 1 iron or you may get 5 iron).
+- Start the resource (refresh, start vivify_dumpsters) or restart your server.
 
 <br /><br />
 <strong>DEPENDANCIES</strong><br />
