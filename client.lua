@@ -6,7 +6,9 @@ local dumpsters = {
     `prop_dumpster_02b`,
     `prop_dumpster_3a`,
     `prop_dumpster_4a`,
-    `prop_dumpster_4b`
+    `prop_dumpster_4b`,
+    `prop_bin_02a`,
+    `prop_bin_01a`
 }
 
 Citizen.CreateThread(function()
@@ -52,8 +54,14 @@ RegisterNetEvent('vivify:client:openDumpster', function()
     if closestDumpster then
         local dumpsterCoords = GetEntityCoords(closestDumpster)
         local dumpsterName = 'dumpster_' .. math.floor(dumpsterCoords.x) .. '_' .. math.floor(dumpsterCoords.y) .. '_' .. math.floor(dumpsterCoords.z)
-
-        TriggerServerEvent('vivify:server:openDumpsterInventory', dumpsterName)
+        exports['ps-ui']:Circle(function(success)
+            if success then
+                TriggerServerEvent('vivify:server:openDumpsterInventory', dumpsterName)
+            else
+                QBCore.Functions.Notify("Failed to open Dumpster!", "error")
+            end
+        end, 2, 20)
+        
     end
 end)
 
@@ -69,8 +77,14 @@ RegisterNetEvent('vivify:client:searchDumpster', function()
             local dumpsterCoords = GetEntityCoords(dumpster)
             local distance = #(coords - dumpsterCoords)
             if distance < closestDistance then
-                closestDistance = distance
-                closestDumpster = dumpster
+                exports['ps-ui']:Circle(function(success)
+                    if success then
+                        closestDistance = distance
+                        closestDumpster = dumpster
+                    else
+                        QBCore.Functions.Notify("Failed to search Dumpster!", "error")
+                    end
+                end, 2, 10)
             end
         end
     end
