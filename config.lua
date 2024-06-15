@@ -18,7 +18,7 @@ Config.Loot = {
     'painkillers'
 }
 
-Config.Cooldown = 300
+Config.Cooldown = 300 -- In seconds, currently 5 minutes.
 
 Config.ItemCount = 3
 Config.ItemQuantity = {
