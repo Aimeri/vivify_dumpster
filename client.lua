@@ -8,7 +8,11 @@ local dumpsters = {
     `prop_dumpster_4a`,
     `prop_dumpster_4b`,
     `prop_bin_02a`,
-    `prop_bin_01a`
+    `prop_bin_01a`,
+    `prop_bin_05a`,
+    `prop_bin_07a`,
+    `prop_bin_07c`,
+    `prop_bin_08a`
 }
 
 Citizen.CreateThread(function()
@@ -56,7 +60,14 @@ RegisterNetEvent('vivify:client:openDumpster', function()
         local dumpsterName = 'dumpster_' .. math.floor(dumpsterCoords.x) .. '_' .. math.floor(dumpsterCoords.y) .. '_' .. math.floor(dumpsterCoords.z)
         exports['ps-ui']:Circle(function(success)
             if success then
-                TriggerServerEvent('vivify:server:openDumpsterInventory', dumpsterName)
+                if Config.QBInventory == "old" then
+                    TriggerServerEvent("inventory:server:OpenInventory", "stash", dumpsterName, {
+                        maxweight = Config.StashSize,
+                        slots = Config.StashSlots,
+                    })
+                elseif Config.QBInventory == "new" then
+                    TriggerServerEvent('vivify:server:openDumpsterInventory', dumpsterName)
+                end
             else
                 QBCore.Functions.Notify("Failed to open Dumpster!", "error")
             end
