@@ -25,3 +25,5 @@ Config.ItemQuantity = {
     min = 1,
     max = 5
 }
+
+Config.QBInventory = 'new' -- new for new qb-inventory, old for old qb-inventory.
