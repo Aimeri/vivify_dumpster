@@ -26,12 +26,10 @@ local dumpsterCooldowns = {}
 RegisterNetEvent('vivify:server:openDumpsterInventory', function(dumpsterName)
     local src = source
     local Player = QBCore.Functions.GetPlayer(src)
+    local data = { label = 'Dumpster', maxweight = 1000000, slots = 50 }
 
     if Player then
-        exports['qb-inventory']:OpenInventory(src, dumpsterName, {
-            maxweight = 1000000,
-            slots = 50,
-        })
+        exports['qb-inventory']:OpenInventory(src, dumpsterName, data)
     end
 end)
 
@@ -50,7 +48,7 @@ RegisterNetEvent('vivify:server:searchDumpster', function(dumpsterName)
             for _, item in pairs(loot) do
                 local quantity = math.random(Config.ItemQuantity.min, Config.ItemQuantity.max)
                 Player.Functions.AddItem(item, quantity)
-                TriggerClientEvent('inventory:client:ItemBox', src, QBCore.Shared.Items[item], "add", quantity)
+                --TriggerClientEvent('qb-inventory:client:ItemBox', src, QBCore.Shared.Items[item], "add", quantity)
             end
             TriggerClientEvent('QBCore:Notify', src, "You found some items in the dumpster.", "success")
         end
